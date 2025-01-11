@@ -7,6 +7,7 @@
     --color-black: #2C2D2D;
 }
 
+/* GLOBAL*/
 *{
     margin: 0;
     padding: 0;
@@ -24,6 +25,7 @@ body{
     font-family: 'Poppins';
 }
 
+/* NAVIGATION BAR STYLE*/
 nav{
     background-color: var(--color-maroon);
     color: white;
@@ -31,6 +33,7 @@ nav{
     text-align: center;
 }
 
+/* MAIN SECTION STYLE*/
 main{
     max-width: 800px;
     margin: auto;
@@ -64,6 +67,33 @@ main{
     transition: 0.3s ease-in;
 }
 
+/* ACCESSORIES SECTION STYLE -HIDDEN -VISIBLE*/
+.accessories-section{
+    border: 2px solid var(--color-red);
+    border-radius: 5px;
+}
+.accessories-section-heading, .accessories-section-link{
+    background-color: var(--color-red);
+    color: white;
+    border-top: none;
+    padding: 5px;
+}
+.accessories-section-link:hover{
+    background-color: var(--color-maroon);
+    transition: 0.3s ease;
+}
+.accessories-section-bulletin{
+    margin: 10px 0;
+    text-align: left;
+}
+.accessories-section-bulletin ul li{
+    display: inline-flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+
+/* FOOTER STYLE*/
 footer{
     position: absolute;
     left: 0;
