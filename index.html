@@ -4,9 +4,36 @@
         <title>FindIt</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="/resources/icon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
+    <script src="script.js"></script>
     <body>
+        <nav onclick="redirectGithub()" class="cursor-pointer">
+            <p>Click here to check the github repository</p>
+        </nav>
 
+        <main>
+            <div class="title">
+                <h1 id="title-heading">Findit</h1>
+            </div>
+            <div class="search-bar">
+                <input id="search-bar-field" type="text" placeholder="Model Number" required>
+            </div>
+            <div class="buttons">
+                <button class="button cursor-pointer" id="search-button">Search</button>
+                <button class="button cursor-pointer" id="feeling-lucky-button">I'm Feeling Lucky</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-content-header">
+                    <p>Discover the accessories that comes with your TV.<br>
+                        <span class="footer-contact-message">If you cannot find the model number of your TV, please <a href="#">contact us</a> for assistance</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
