@@ -25,33 +25,22 @@
         />
       </div>
       <div class="buttons">
-        <button
-          class="button cursor-pointer"
-          id="search-button"
-          onclick="redirectManual(document.getElementById('search-bar-field').value)"
-        >
-          Search
-        </button>
+        <button class="button cursor-pointer" id="search-button">Search</button>
         <button class="button cursor-pointer" id="feeling-lucky-button">
           I'm Feeling Lucky
         </button>
       </div>
       <div class="accessories-section" id="accessories-section">
-        <div class="accessories-section-heading">
+        <div class="accessories-section-heading" id="accessories-section-heading">
           <p>This is what comes with your TV.</p>
         </div>
         <div class="accessories-section-bulletin">
-          <ul>
-            <li>Remote</li>
-            <li>Power Cable</li>
-            <li>HDMI</li>
-            <li>Base Stand</li>
-            <li>Neck Stand</li>
+          <ul id="accessories-list">
           </ul>
         </div>
         <div
           class="accessories-section-link cursor-pointer"
-          id="accessories-link"
+          id="accessories-section-link"
         >
           Quick User Guide
         </div>
@@ -78,4 +67,5 @@
   </body>
 
   <script src="script.js"></script>
+  <script src="manual-urls.js"></script>
 </html>

@@ -71,6 +71,7 @@ main{
 .accessories-section{
     border: 2px solid var(--color-red);
     border-radius: 5px;
+    display: none;
 }
 .accessories-section-heading, .accessories-section-link{
     background-color: var(--color-red);

@@ -1,27 +1,73 @@
 const urlGithub = "https://github.com/ayoamrit/findit";
 const accessorySection = document.getElementById("accessories-section");
+const accessoryHeading = document.getElementById("accessories-section-heading");
+const accessoryList = document.getElementById("accessories-list");
+const accessoryManualLink = document.getElementById("accessories-section-link");
+let currentManualUrl = "";
 const searchButton = document.getElementById("search-button");
-
-const modelManualUrls = [
-  {
-    model: "UN50DU7100F",
-    url: "https://downloadcenter.samsung.com/content/EM/202405/20240522035651001/BN68-19257A-01_IG_DU7000%20Flat%20feet%2043-70inch_WW_L10_240513.0.pdf",
-  },
-  {
-    model: "KD-50X77L",
-    url: "https://www.sony.com/electronics/support/res/manuals/5049/fe7792c86c4f8c581dac30f540b95e81/50499611M.pdf",
-  },
-];
 
 
 function redirectGithub() {
   window.open(urlGithub, "_blank");
 }
 
-function redirectManual(searchTxt) {
-    modelManualUrls.forEach((modelManualObj) => {
-    if (modelManualObj.model.includes(searchTxt)) {
-      window.open(modelManualObj.url, "_blank");
+searchButton.addEventListener("click", function(){
+  const getModelNumberInput = document.getElementById("search-bar-field").value.trim();
+
+  if(isEmpty(getModelNumberInput) == false){
+    if(isModelExist(getModelNumberInput) == true){
+
+      const selectedModelDetails = getModelDetails(getModelNumberInput);
+      updateAccessorySection(getModelNumberInput, selectedModelDetails.accessories, selectedModelDetails.url);
+      accessorySection.style.display = "block";
     }
-  });
+    else{
+      alert(getModelNumberInput+": The model number does not exist in the database. Please request an update by contacting.");
+    }
+  }
+  else{
+    alert("The model number is required to search.");
+  }
+});
+
+
+//function to check whether the input field is empty or not
+function isEmpty(modelNumber){
+  return modelNumber === "";
 }
+//function to check whether the model number exist in the database or not
+function isModelExist(modelNumber){
+  return modelManualUrls.some(item => item.modelNumber == modelNumber);
+}
+
+//function to get details of the selected model number
+function getModelDetails(modelNumber){
+  const model = modelManualUrls.find(item => item.modelNumber == modelNumber);
+
+  return{
+    accessories: model.accessories,
+    url: model.url
+  };
+}
+
+function updateAccessorySection(modelNumber, accessories, manualUrl){
+  //update the heading
+  accessoryHeading.textContent = modelNumber;
+
+  //Clear the list to avoid duplicates
+  accessoryList.innerHTML = "";
+  accessories.forEach(item =>{
+    const li = document.createElement("li");
+    li.textContent = item;
+    accessoryList.appendChild(li);
+  });
+
+  //Update the current manual url
+  currentManualUrl = manualUrl;
+}
+
+//Open the link in the new window when "Quick User Guide" is clicked
+accessoryManualLink.addEventListener("click", function(){
+  window.open(currentManualUrl, "_blank");
+});
+
