@@ -1,10 +1,11 @@
 const urlGithub = "https://github.com/ayoamrit/findit";
 const accessorySection = document.getElementById("accessories-section");
-const accessoryHeading = document.getElementById("accessories-section-heading");
+const accessoryHeading = document.getElementById("accessories-heading");
 const accessoryList = document.getElementById("accessories-list");
 const accessoryManualLink = document.getElementById("accessories-section-link");
 let currentManualUrl = "";
 const searchButton = document.getElementById("search-button");
+const accessorySectionCloseButton = document.getElementById("accessories-close-button");
 
 
 function redirectGithub() {
@@ -70,4 +71,11 @@ function updateAccessorySection(modelNumber, accessories, manualUrl){
 accessoryManualLink.addEventListener("click", function(){
   window.open(currentManualUrl, "_blank");
 });
+
+
+accessorySectionCloseButton.addEventListener("click", function() {
+  accessorySection.style.display = 'none';
+});
+
+
 
