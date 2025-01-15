@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
-    --color-beige: #F2E8C6;
-    --color-maroon: #800000;
-    --color-red: #982B1C;
-    --color-black: #2C2D2D;
-    --color-white: #fff;
+    --color-indigo: #6320ee;
+    --color-blue: #8075FF;
+    --color-magnolia: #F8F0FB;
+    --color-ash: #CAD5CA;
+    --color-rblack: #211A1D;
 }
 
 /* GLOBAL*/
@@ -22,14 +22,30 @@ a{
 }
 
 body{
-    background-color: var(--color-beige);
+    background: linear-gradient(-45deg, #8075ff, #f8f0fb, #cad5ca);
+    animation:  gradient 10s ease infinite;
+    background-size: 400% 400%;
+    height: 100vh;
     font-family: 'Poppins';
+}
+
+/* GRADIENT ANIMATION*/
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 /* NAVIGATION BAR STYLE*/
 nav{
-    background-color: var(--color-maroon);
-    color: white;
+    background-color: var(--color-indigo);
+    color: var(--color-magnolia);
     padding: 5px 0;
     text-align: center;
 }
@@ -43,11 +59,12 @@ main{
 #title-heading{
     font-size: 6rem;
     padding-top: 4rem;
+    color: var(--color-rblack);
 }
 #search-bar-field{
     width: 100%;
     height: 50px;
-    border: 2px solid var(--color-maroon);
+    border: 2px solid var(--color-rblack);
     border-radius: 5px;
     padding: 5px;
     font-size: 15px;
@@ -57,25 +74,25 @@ main{
     width: 30%;
     height: 50px;
     font-size: 15px;
-    background-color: var(--color-red);
+    background-color: var(--color-indigo);
     border: none;
     color: white;
     border-radius: 5px;
     margin: 20px 0;
 }
 .button:hover{
-    background-color: var(--color-maroon);
+    background-color: var(--color-blue);
     transition: 0.3s ease-in;
 }
 
 /* ACCESSORIES SECTION STYLE -HIDDEN -VISIBLE*/
 .accessories-section{
-    border: 2px solid var(--color-red);
+    border: 2px solid var(--color-indigo);
     border-radius: 5px;
     display: none;
 }
 .accessories-section-heading, .accessories-section-link{
-    background-color: var(--color-red);
+    background-color: var(--color-indigo);
     color: white;
     border-top: none;
     padding: 5px;
@@ -86,12 +103,12 @@ main{
     padding: 5px 10px;
 }
 .accessories-close-button{
-    background-color: var(--color-maroon);
+    background-color: var(--color-blue);
     padding: 2px 10px;
     border-radius: 5px;
 }
 .accessories-section-link:hover{
-    background-color: var(--color-maroon);
+    background-color: var(--color-blue);
     transition: 0.3s ease;
 }
 .accessories-section-bulletin{
@@ -100,5 +117,13 @@ main{
 }
 .accessories-section-bulletin ul li{
     display: inline-block;
-    width: 49%
+    width: 49%;
+}
+.accessories-section-bulletin ul li::before{
+    content: '◦';
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: bold;
+    top: 1px;
+    left: -3px;
 }

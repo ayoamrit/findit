@@ -13,21 +13,33 @@ function redirectGithub() {
 }
 
 searchButton.addEventListener("click", function(){
-  const getModelNumberInput = document.getElementById("search-bar-field").value.trim();
+  const getUserInput = document.getElementById("search-bar-field").value.trim();
 
-  if(isEmpty(getModelNumberInput) == false){
-    if(isModelExist(getModelNumberInput) == true){
+  if(isEmpty(getUserInput) == false){
+    
+    //Get what the user searched ? SKU : ModelNumber
+    const userInputType = isModelSearched(getUserInput);
 
-      const selectedModelDetails = getModelDetails(getModelNumberInput);
-      updateAccessorySection(getModelNumberInput, selectedModelDetails.accessories, selectedModelDetails.url);
+    //Check whether the item exist in the database
+    if(isItemExist(getUserInput, userInputType) == true){
+      
+      //Fetch details
+      const selectedModelDetails = getModelDetails(getUserInput, userInputType);
+      updateAccessorySection(getUserInput, selectedModelDetails.accessories, selectedModelDetails.url);
       accessorySection.style.display = "block";
     }
     else{
-      alert(getModelNumberInput+": The model number does not exist in the database. Please request an update by contacting.");
+
+      if(userInputType === "sku"){
+        alert(getUserInput+": The searched SKU does not exist in the database. Please try with the model number or request an update by contacting the team");
+      }
+      else{
+        alert(getUserInput+": The searched model number does not exist in the database. Please try with the SKU or request an update by contacting the team.");
+      }
     }
   }
   else{
-    alert("The model number is required to search.");
+    alert("The model number or SKU is required to search.");
   }
 });
 
@@ -36,14 +48,26 @@ searchButton.addEventListener("click", function(){
 function isEmpty(modelNumber){
   return modelNumber === "";
 }
+
+//function to check whether the user has searched model number or the SKU
+function isModelSearched(userInput){
+  
+  //Regular expression to check if the input contains only numbers (SKU)
+  const skuRegex = /^\d+$/;
+
+  //Function will return true if the input is an SKU
+  return skuRegex.test(userInput) ? "sku" : "modelNumber";
+}
+
+
 //function to check whether the model number exist in the database or not
-function isModelExist(modelNumber){
-  return modelManualUrls.some(item => item.modelNumber == modelNumber);
+function isItemExist(userInput, userInputType){
+  return modelManualUrls.some(item => item[userInputType] == userInput);
 }
 
 //function to get details of the selected model number
-function getModelDetails(modelNumber){
-  const model = modelManualUrls.find(item => item.modelNumber == modelNumber);
+function getModelDetails(userInput, userInputType){
+  const model = modelManualUrls.find(item => item[userInputType] == userInput);
 
   return{
     accessories: model.accessories,
@@ -51,9 +75,9 @@ function getModelDetails(modelNumber){
   };
 }
 
-function updateAccessorySection(modelNumber, accessories, manualUrl){
+function updateAccessorySection(userInput, accessories, manualUrl){
   //update the heading
-  accessoryHeading.textContent = modelNumber;
+  accessoryHeading.textContent = userInput;
 
   //Clear the list to avoid duplicates
   accessoryList.innerHTML = "";
