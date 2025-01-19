@@ -8,19 +8,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <!--
     <nav onclick="redirectGithub()" class="cursor-pointer">
       <p>Click here to check the github repository</p>
+    </nav>
+    -->
+
+    <nav>
+      <div class="nav-logo cursor-pointer">FindIt</div>
+      <div class="nav-links">
+        <ul>
+          <li><a href="#">Credits</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a class="nav-links-github cusor-pointer" href="https://github.com/ayoamrit/findit" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
     </nav>
 
     <main>
       <div class="title">
-        <h1 id="title-heading">Findit</h1>
+        <h1 id="title-heading"><span class="cursor-pointer">Complete</span> Your Product</h1>
+        <p class="title-sub-heading">Find all the accessories that come with your device in one simple search—fast, accurate, and hassle-free.</p>
       </div>
       <div class="search-bar">
         <input
           id="search-bar-field"
           type="text"
-          placeholder="Model Number | SKU"
+          placeholder="Model Number"
         />
         <div id="autocomplete-suggestions" class="autocomplete-suggestions"></div>
       </div>
@@ -30,7 +44,11 @@
           I'm Feeling Lucky
         </button>
       </div>
-      <div class="accessories-section" id="accessories-section">
+    </main>
+
+    <!--Accessories Section Model-->
+    <section class="accessories-section" id="accessories-section">
+      <div class="accessories-section-content" id="accessories-section-content">
         <div class="accessories-section-heading">
           <p id="accessories-heading"></p>
           <span class="accessories-close-button cursor-pointer" id="accessories-close-button">Close</span>
@@ -46,8 +64,9 @@
           Quick User Guide
         </div>
       </div>
-    </main>
-</div>
+    </section>
+
+    
   </body>
 
   <script src="script.js"></script>

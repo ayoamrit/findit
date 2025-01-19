@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  --color-indigo: #6320ee;
-  --color-blue: #8075ff;
   --color-magnolia: #f8f0fb;
-  --color-ash: #cad5ca;
-  --color-rblack: #211a1d;
+  --color-eblack: #191919;
+  --color-onyx: #404040;
 }
 
 /* GLOBAL*/
@@ -21,33 +19,70 @@ a {
   color: white;
 }
 
+/* Add Animation */
+@-webkit-keyframes slideIn {
+   from {bottom: -300px; opacity: 0} 
+   to {bottom: 0; opacity: 1}
+}
+  
+@keyframes slideIn {
+   from {bottom: -300px; opacity: 0}
+   to {bottom: 0; opacity: 1}
+}
+  
+@-webkit-keyframes fadeIn {
+   from {opacity: 0} 
+   to {opacity: 1}
+}
+  
+@keyframes fadeIn {
+   from {opacity: 0} 
+   to {opacity: 1}
+}
+
 body {
-  background: linear-gradient(-45deg, #8075ff, #f8f0fb, #cad5ca);
-  animation: gradient 10s ease infinite;
-  background-size: 400% 400%;
+  background-color: var(--color-eblack);
   height: 100vh;
   font-family: "Poppins";
 }
 
-/* GRADIENT ANIMATION*/
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* NAVIGATION BAR STYLE*/
 nav {
-  background-color: var(--color-indigo);
-  color: var(--color-magnolia);
-  padding: 5px 0;
-  text-align: center;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo{
+    color: var(--color-magnolia);
+    font-size: 1.5rem;
+    font-style: bold;
+}
+.nav-links ul{
+    display: inline-flex;
+}
+.nav-links ul li{
+    margin: 0 15px;
+    list-style-type: none;
+}
+.nav-links ul li a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+}
+.nav-links ul li a:not(.nav-links-github):hover{
+    color: var(--color-onyx);
+}
+.nav-links-github{
+    background-color: var(--color-magnolia);
+    color: var(--color-eblack);
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: 0.3 ease-in;
+}
+.nav-links-github:hover{
+    background-color: var(--color-onyx);
+    color: var(--color-magnolia);
 }
 
 /* MAIN SECTION STYLE*/
@@ -57,18 +92,30 @@ main {
   text-align: center;
 }
 #title-heading {
-  font-size: 6rem;
+  font-size: 3rem;
   padding-top: 4rem;
-  color: var(--color-rblack);
+  color: var(--color-magnolia);
 }
+#title-heading span{
+    background-color: var(--color-onyx);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    padding: 0 10px;
+}
+.title-sub-heading{
+    font-size: 0.9rem;
+    color: var(--color-magnolia);
+}
+
 #search-bar-field {
   width: 100%;
   height: 50px;
-  border: 2px solid var(--color-rblack);
+  border: 2px solid var(--color-onyx);
   border-radius: 5px;
   padding: 5px;
   font-size: 15px;
   outline: none;
+  margin-top: 20px;
 }
 .search-bar {
   position: relative;
@@ -87,9 +134,9 @@ main {
   top: 100%;
   left: 0;
   right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-top: none;
+  background-color: var(--color-magnolia);
+  border: none;
+  border-radius: 5px;
   max-height: 150px;
   overflow-y: auto;
   z-index: 1000;
@@ -99,35 +146,57 @@ main {
   cursor: pointer;
 }
 .autocomplete-suggestions div:hover {
-  background-color: #f0f0f0;
+  background-color: var(--color-onyx);
+  color: var(--color-magnolia);
 }
 .button {
   width: 30%;
   height: 50px;
   font-size: 15px;
-  background-color: var(--color-indigo);
+  background-color: var(--color-onyx);
   border: none;
   color: white;
   border-radius: 5px;
   margin: 20px 0;
 }
 .button:hover {
-  background-color: var(--color-blue);
+  background-color: var(--color-magnolia);
+  color: var(--color-eblack);
   transition: 0.3s ease-in;
 }
 
 /* ACCESSORIES SECTION STYLE -HIDDEN -VISIBLE*/
 .accessories-section {
-  border: 2px solid var(--color-indigo);
-  border-radius: 5px;
-  display: none;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
+.accessories-section-content{
+    position: fixed;
+    bottom: 0;
+    background-color: var(--color-eblack);
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
 }
 .accessories-section-heading,
 .accessories-section-link {
-  background-color: var(--color-indigo);
-  color: white;
+  background-color: var(--color-onyx);
+  color: var(--color-magnolia);
   border-top: none;
   padding: 5px;
+}
+.accessories-section-link{
+    text-align: center;
 }
 .accessories-section-heading {
   display: flex;
@@ -135,21 +204,22 @@ main {
   padding: 5px 10px;
 }
 .accessories-close-button {
-  background-color: var(--color-blue);
   padding: 2px 10px;
   border-radius: 5px;
 }
 .accessories-section-link:hover {
-  background-color: var(--color-blue);
+  background-color: var(--color-magnolia);
+  color: var(--color-eblack);
   transition: 0.3s ease;
 }
 .accessories-section-bulletin {
   margin: 10px 30px;
   text-align: left;
+  color: var(--color-magnolia);
 }
 .accessories-section-bulletin ul li {
   display: inline-block;
-  width: 49%;
+  width: 30%;
 }
 .accessories-section-bulletin ul li::before {
   content: "◦";

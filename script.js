@@ -1,19 +1,13 @@
-const urlGithub = "https://github.com/ayoamrit/findit";
 const accessorySection = document.getElementById("accessories-section");
 const accessoryHeading = document.getElementById("accessories-heading");
 const accessoryList = document.getElementById("accessories-list");
 const accessoryManualLink = document.getElementById("accessories-section-link");
 let currentManualUrl = "";
 const searchButton = document.getElementById("search-button");
-const accessorySectionCloseButton = document.getElementById(
-  "accessories-close-button"
-);
+const accessorySectionCloseButton = document.getElementById("accessories-close-button");
 const suggestionsBox = document.getElementById("autocomplete-suggestions");
 let searchBarElem = document.getElementById("search-bar-field");
 
-function redirectGithub() {
-  window.open(urlGithub, "_blank");
-}
 
 // Function to filter suggestions and display them
 function showSuggestions(value) {
