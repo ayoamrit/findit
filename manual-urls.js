@@ -64,5 +64,24 @@ const modelManualUrls = [
     sku: "17683673",
     accessories: ['Stand Riser', 'Stand Base', 'I/O Cover', 'Power Cable', 'DisplayPort Cable', 'USB-C to DP Cable', 'USB 3.2 Gen1 Upstream Cable', 'Microfiber Cloth', 'Alienware Sticker', 'Factory Cailbration Report', 'Safety, Environmental & Regulatory Information'],
     url: "https://dl.dell.com/content/manual84043186-alienware-aw2725df-monitor-user-s-guide.pdf?language=en-us"
+  },
+  {
+    modelNumber: "OMEN 32Q",
+    sku: "17154329",
+    accessories: ['Power Cord', 'Display Cable', 'Quick User Guide', 'Warranty'],
+    url: "https://kaas.hpcloud.hp.com/pdf-public/pdf_7348193_en-US-1.pdf"
+  },
+  {
+    modelNumber: "27GS50F-B",
+    sku: "17935230",
+    accessories: ['HDMI Cable', 'x2 Screws [M4 L10]', 'Base Stand', 'Neck Stand', 'Power Cable'],
+    url: "https://gscs-b2c.lge.com/downloadFile?fileId=TLLubWrFj16Rn1mAlUtndA"
+  },
+  {
+    modelNumber: "KA272 G0BI",
+    modelName: "Acer 27 FHD 120Hz 4ms GTG IPS LED FreeSync Monitor",
+    sku: "18217950",
+    accessories: ['Quick Start Guide', 'Power Cable', 'HDMI Cable', 'Base Stand', 'Neck Stand'],
+    url: "https://global-download.acer.com/GDFiles/Document/User%20Manual/User%20Manual_Acer_1.0_A_A.pdf?acerid=637036766197138347&Step1=&Step2=&Step3=KA272&OS=ALL&LC=en&BC=ACER&SC=PA_6"
   }
 ];

@@ -15,7 +15,11 @@
 .cursor-pointer {
   cursor: pointer;
 }
+li{
+  list-style-type: none;
+}
 a {
+  text-decoration: none;
   color: white;
 }
 
@@ -54,35 +58,33 @@ nav {
   align-items: center;
 }
 .nav-logo{
-    color: var(--color-magnolia);
-    font-size: 1.5rem;
-    font-style: bold;
+  color: var(--color-magnolia);
+  font-size: 1.5rem;
+  font-style: bold;
 }
 .nav-links ul{
-    display: inline-flex;
+  display: inline-flex;
 }
 .nav-links ul li{
-    margin: 0 15px;
-    list-style-type: none;
+  margin: 0 15px;
 }
 .nav-links ul li a{
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px 20px;
+  display: inline-block;
+  padding: 10px 20px;
 }
 .nav-links ul li a:not(.nav-links-github):hover{
     color: var(--color-onyx);
 }
 .nav-links-github{
-    background-color: var(--color-magnolia);
-    color: var(--color-eblack);
-    padding: 10px 20px;
-    border-radius: 50px;
-    transition: 0.3 ease-in;
+  background-color: var(--color-magnolia);
+  color: var(--color-eblack);
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: 0.3 ease-in;
 }
 .nav-links-github:hover{
-    background-color: var(--color-onyx);
-    color: var(--color-magnolia);
+  background-color: var(--color-onyx);
+  color: var(--color-magnolia);
 }
 
 /* MAIN SECTION STYLE*/
@@ -97,21 +99,21 @@ main {
   color: var(--color-magnolia);
 }
 #title-heading span{
-    background-color: var(--color-onyx);
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: italic;
-    padding: 0 10px;
+  background-color: var(--color-onyx);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  padding: 0 10px;
 }
 .title-sub-heading{
-    font-size: 0.9rem;
-    color: var(--color-magnolia);
+  font-size: 0.9rem;
+  color: var(--color-magnolia);
 }
 
 #search-bar-field {
-  width: 100%;
+  width: 80%;
   height: 50px;
-  border: 2px solid var(--color-onyx);
-  border-radius: 5px;
+  background-color: var(--color-magnolia);
+  border-radius: 5px 0 0 5px;
   padding: 5px;
   font-size: 15px;
   outline: none;
@@ -119,7 +121,10 @@ main {
 }
 .search-bar {
   position: relative;
-  display: inline-block;
+  width: 100%;
+}
+.search-bar-container{
+  display: flex;
   width: 100%;
 }
 .search-bar input {
@@ -137,6 +142,7 @@ main {
   background-color: var(--color-magnolia);
   border: none;
   border-radius: 5px;
+  text-align: left;
   max-height: 150px;
   overflow-y: auto;
   z-index: 1000;
@@ -149,44 +155,90 @@ main {
   background-color: var(--color-onyx);
   color: var(--color-magnolia);
 }
-.button {
-  width: 30%;
+#search-button {
+  width: 20%;
   height: 50px;
   font-size: 15px;
   background-color: var(--color-onyx);
   border: none;
   color: white;
-  border-radius: 5px;
-  margin: 20px 0;
+  border-radius: 0 5px 5px 0;
+  margin-top: 20px;
 }
-.button:hover {
+#search-button:hover {
   background-color: var(--color-magnolia);
   color: var(--color-eblack);
   transition: 0.3s ease-in;
 }
 
+.trending-container{
+  display: flex;
+  justify-content: space-evenly;
+  color: var(--color-magnolia);
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+.trending-container span{
+  background-color: var(--color-onyx);
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+/* Scroller Animation*/
+.scroller{
+  margin-top: 50px;
+  width: 100%;
+}
+.scroller_inner{
+  padding-block: 1rem;
+  display: flex;
+  gap: 2rem;
+}
+.scroller_inner img{
+  width: 300px;
+  height: 350px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.scroller[data-animated="true"]{
+  overflow: hidden;
+}
+.scroller[data-animated="true"] .scroller_inner{
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll{
+  to{
+    transform: translate(calc(-50% - 1rem));
+  }
+}
+
 /* ACCESSORIES SECTION STYLE -HIDDEN -VISIBLE*/
 .accessories-section {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  -webkit-animation-name: fadeIn; /* Fade in the background */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-animation-name: fadeIn;
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
   animation-duration: 0.4s;
 }
 .accessories-section-content{
-    position: fixed;
-    bottom: 0;
-    background-color: var(--color-eblack);
-    width: 100%;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--color-eblack);
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
 }
 .accessories-section-heading,
 .accessories-section-link {

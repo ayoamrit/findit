@@ -1,12 +1,21 @@
+//Accessory Section
 const accessorySection = document.getElementById("accessories-section");
 const accessoryHeading = document.getElementById("accessories-heading");
 const accessoryList = document.getElementById("accessories-list");
 const accessoryManualLink = document.getElementById("accessories-section-link");
-let currentManualUrl = "";
-const searchButton = document.getElementById("search-button");
 const accessorySectionCloseButton = document.getElementById("accessories-close-button");
+let currentManualUrl = "";
+
+//Search Section
+const searchButton = document.getElementById("search-button");
 const suggestionsBox = document.getElementById("autocomplete-suggestions");
 let searchBarElem = document.getElementById("search-bar-field");
+
+//Trending Element
+const trendingSearchElement = document.querySelectorAll(".trending-search-element");
+
+//Scrolling Animation Section
+const scrollers = document.querySelectorAll(".scroller");
 
 
 // Function to filter suggestions and display them
@@ -133,3 +142,47 @@ accessoryManualLink.addEventListener("click", function () {
 accessorySectionCloseButton.addEventListener("click", function () {
   accessorySection.style.display = "none";
 });
+
+//Trending Search Elements
+trendingSearchElement.forEach(element => {
+  element.addEventListener('click', function(){
+    let trendingContent = this.textContent;
+
+    //Insert the value of selected trending search element to the search-bar-field
+    searchBarElem.value = trendingContent;
+  })
+})
+
+
+//Scroller Animation
+//check if the user prefers reduced motion
+if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    
+  //If not, add the animation
+  addAnimation();
+}
+
+//Function to add the animation
+function addAnimation(){
+  //Loop through each element with the class "scoller"
+  scrollers.forEach((scroller) => {
+
+    //Set an attribute to mark the element as animated
+    scroller.setAttribute("data-animated", true)
+
+    //Find the inner content of the scoller
+    const scrollerInner = scroller.querySelector(".scroller_inner");
+    //Get an array of children elements inside the scroller
+    const scrollerContent = Array.from(scrollerInner.children);
+
+    //Duplicate each child element and append it to the end
+    scrollerContent.forEach(item => {
+      const duplicatedItem = item.cloneNode(true);
+      duplicatedItem.setAttribute("aria-hidden", true);
+
+      //Append the duplicated item to the end of the scroller
+      scrollerInner.appendChild(duplicatedItem);
+    });
+  });
+}
+

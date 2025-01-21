@@ -8,12 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <!--
-    <nav onclick="redirectGithub()" class="cursor-pointer">
-      <p>Click here to check the github repository</p>
-    </nav>
-    -->
 
+    <!--Navigation Bar-->
     <nav>
       <div class="nav-logo cursor-pointer">FindIt</div>
       <div class="nav-links">
@@ -25,26 +21,48 @@
       </div>
     </nav>
 
+    <!--Heading & Search Field-->
     <main>
       <div class="title">
         <h1 id="title-heading"><span class="cursor-pointer">Complete</span> Your Product</h1>
         <p class="title-sub-heading">Find all the accessories that come with your device in one simple search—fast, accurate, and hassle-free.</p>
       </div>
       <div class="search-bar">
-        <input
-          id="search-bar-field"
-          type="text"
-          placeholder="Model Number"
-        />
+        <div class="search-bar-container">
+          <input id="search-bar-field" type="text" placeholder="Model Number"/>
+          <button class="button cursor-pointer" id="search-button">Search</button>
+        </div>
         <div id="autocomplete-suggestions" class="autocomplete-suggestions"></div>
       </div>
-      <div class="buttons">
-        <button class="button cursor-pointer" id="search-button">Search</button>
-        <button class="button cursor-pointer" id="feeling-lucky-button">
-          I'm Feeling Lucky
-        </button>
-      </div>
+
+      <!--Trending Search Container-->
+      <section class="trending-container">
+        <p>Trending Searches</p>
+        <span class="cursor-pointer trending-search-element">VY249HF</span>
+        <span class="cursor-pointer trending-search-element">24MR400</span>
+        <span class="cursor-pointer trending-search-element">AW2725DF</span>
+        <span class="cursor-pointer trending-search-element">27GS50F-B</span>
+        <span class="cursor-pointer trending-search-element">OLED83C4PUA</span>
+      </section>
     </main>
+
+    <!--Scrolling Container-->
+    <section>
+      <div class="scroller">
+        <div class="scroller_inner">
+            <img src="/resources/scrollingImages/1.jpg" alt="Image">
+            <img src="/resources/scrollingImages/2.png" alt="Image">
+            <img src="/resources/scrollingImages/3.png" alt="Image">
+            <img src="/resources/scrollingImages/4.jpg" alt="Image">
+            <img src="/resources/scrollingImages/5.jpg" alt="Image">
+            <img src="/resources/scrollingImages/6.png" alt="Image">
+            <img src="/resources/scrollingImages/7.png" alt="Image">
+            <img src="/resources/scrollingImages/8.jpg" alt="Image">
+            <img src="/resources/scrollingImages/9.jpg" alt="Image">
+            <img src="/resources/scrollingImages/10.jpg" alt="Image">
+        </div>
+    </div>
+    </section>
 
     <!--Accessories Section Model-->
     <section class="accessories-section" id="accessories-section">
@@ -57,16 +75,10 @@
           <ul id="accessories-list">
           </ul>
         </div>
-        <div
-          class="accessories-section-link cursor-pointer"
-          id="accessories-section-link"
-        >
-          Quick User Guide
-        </div>
+        <div class="accessories-section-link cursor-pointer" id="accessories-section-link">Quick User Guide</div>
       </div>
     </section>
 
-    
   </body>
 
   <script src="script.js"></script>
