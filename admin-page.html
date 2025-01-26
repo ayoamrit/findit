@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FindIt</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="./resources/icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <nav>
+        <div class="nav-logo cursor-pointer">FindIt</div>
+        <div class="nav-links">
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="admin-page.html">Admin</a></li>
+            <li><a class="nav-links-github cusor-pointer" href="https://github.com/ayoamrit/findit" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+        </nav>
+
+        <section class="table-container">
+            <div class="table-container-buttons">
+                <div class="left-table-container">
+                    <button class="cursor-pointer" id="add-table-button">Add</button>
+                </div>
+                <div class="right-table-container">
+                    <input type="text" id="find-element-input" placeholder="Model Number">
+                    <button class="cursor-pointer" id="find-table-button">Find</button>
+                    <button class="cursor-pointer" id="reset-table-button">Reset</button>
+                    <button class="cursor-pointer" id="remove-table-button">Remove</button>
+                </div>
+            </div>
+
+            <div class="add-data-form" id="add-data-form-model">
+                <div class="form-row-container set-margin">
+                    <div class="form-vertical-container">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" class="input-field" id="product-name" name="product-name" placeholder="Enter the name" required>
+                    </div>
+                    <div class="form-vertical-container">
+                        <label for="model-number">Model Number</label>
+                        <input type="text" class="input-field" id="model-number" name="model-number" placeholder="Enter the model number" required>
+                    </div>
+                </div>
+    
+                <label for="user-guide-url" class="set-margin">Quick User Guide (URL)</label>
+                <input type="text" class="input-field" id="user-guide-url" name="user-guide-url" placeholder="Enter the url" required>
+    
+                <label for="accessories-textarea" class="set-margin">Accessories</label>
+                <textarea id="accessories-textarea" name="accessories-textarea" placeholder="Example: Power Cable [Attached], Magic Remote Control, Batteries, Quick User Guide, 2 Stands, x6 Screws [M4 L30]"></textarea>
+    
+                <input type="submit" class="set-margin cursor-pointer" id="submit-admin-form" name="submit-admin-form" value="Submit">
+                <button class="cursor-pointer close-form-model-button set-margin" id="close-form-model-button">Close</button>
+            </div>
+
+            <table class="data-table" id="data-table">
+                <tr>
+                    <th>Model Number</th>
+                    <th>Name</th>
+                    <th>Accessories</th>
+                    <th>URL</th>
+                </tr>
+            </table>
+        </section>
+
+
+        </form>
+    </body>
+
+    <script src="manual-urls.js"></script>
+    <script src="adminHandler.js"></script>
+</html>

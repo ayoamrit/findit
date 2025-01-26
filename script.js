@@ -56,8 +56,8 @@ searchButton.addEventListener("click", function () {
   const getUserInput = document.getElementById("search-bar-field").value.trim();
 
   if (isEmpty(getUserInput) == false) {
-    //Get what the user searched ? SKU : ModelNumber
-    const userInputType = isModelSearched(getUserInput);
+    
+    const userInputType = "modelNumber";
 
     //Check whether the item exist in the database
     if (isItemExist(getUserInput, userInputType) == true) {
@@ -70,35 +70,17 @@ searchButton.addEventListener("click", function () {
       );
       accessorySection.style.display = "block";
     } else {
-      if (userInputType === "sku") {
-        alert(
-          getUserInput +
-            ": The searched SKU does not exist in the database. Please try with the model number or request an update by contacting the team"
-        );
-      } else {
-        alert(
-          getUserInput +
-            ": The searched model number does not exist in the database. Please try with the SKU or request an update by contacting the team."
-        );
-      }
+        alert(getUserInput +": The searched model number does not exist in the database. Please try again "+ 
+          "or request an update by contacting the team.");
     }
   } else {
-    alert("The model number or SKU is required to search.");
+    alert("The model number is required to search.");
   }
 });
 
 //function to check whether the input field is empty or not
 function isEmpty(modelNumber) {
   return modelNumber === "";
-}
-
-//function to check whether the user has searched model number or the SKU
-function isModelSearched(userInput) {
-  //Regular expression to check if the input contains only numbers (SKU)
-  const skuRegex = /^\d+$/;
-
-  //Function will return true if the input is an SKU
-  return skuRegex.test(userInput) ? "sku" : "modelNumber";
 }
 
 //function to check whether the model number exist in the database or not
