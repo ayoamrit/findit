@@ -285,7 +285,6 @@ main {
 /*****************************************************/
 /*  ADMIN PAGE Style  */
 /*****************************************************/
-
 .table-container{
   max-width: 80rem;
   margin: 10px auto;
@@ -313,10 +312,24 @@ main {
   background-color: var(--color-onyx);
   color: var(--color-magnolia);
 }
+
+.data-table-container{
+  width: 100%;
+  height: 80vh;
+  overflow-y: auto;
+  margin-top: 20px;
+}
 .data-table{
   width: 100%;
   border-collapse: collapse;
   color: var(--color-magnolia);
+}
+.data-table th{
+  position: sticky;
+  top: 0;
+  background-color: rgb(214, 214, 214);
+  color: var(--color-eblack);
+  border-color: var(--color-onyx);
 }
 td, th {
   border: 1px solid var(--color-onyx);
@@ -336,6 +349,11 @@ tr:nth-child(even), tr:nth-child(even) a {
   background-color: var(--color-magnolia);
   padding: 10px;
   margin: 20px 0;
+  
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.50s;
+  animation-name: slideIn;
+  animation-duration: 0.50s;
 }
 .add-data-form input[type="text"], .add-data-form input[type="submit"]{
   height: 40px;
@@ -366,7 +384,7 @@ tr:nth-child(even), tr:nth-child(even) a {
 #accessories-textarea{
   resize: vertical;
   min-height: 100px;
-  border-radius: 5px;
+  border: none;
   background-color: rgb(214, 214, 214);
   color: var(--color-eblack);
   font-family: 'Poppins';

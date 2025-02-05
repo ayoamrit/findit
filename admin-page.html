@@ -10,25 +10,27 @@
     <body>
         <!--Navigation Bar-->
         <nav>
-        <div class="nav-logo cursor-pointer">FindIt</div>
-        <div class="nav-links">
-            <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="admin-page.html">Admin</a></li>
-            <li><a class="nav-links-github cusor-pointer" href="https://github.com/ayoamrit/findit" target="_blank">GitHub</a></li>
-            </ul>
-        </div>
+            <div class="nav-logo cursor-pointer">FindIt</div>
+            <div class="nav-links">
+                <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin-page.html">Admin</a></li>
+                <li><a class="nav-links-github cusor-pointer" href="https://github.com/ayoamrit/findit" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
         </nav>
 
         <section class="table-container">
             <div class="table-container-buttons">
                 <div class="left-table-container">
                     <button class="cursor-pointer" id="add-table-button">Add</button>
+                    <button class="cursor-pointer" id="export-csv-button">Export</button>
+                    <button class="cursor-pointer" id="reset-table-button">Reset</button>
                 </div>
                 <div class="right-table-container">
                     <input type="text" id="find-element-input" placeholder="Model Number">
                     <button class="cursor-pointer" id="find-table-button">Find</button>
-                    <button class="cursor-pointer" id="reset-table-button">Reset</button>
+                    <button class="cursor-pointer" id="modify-table-button">Modify</button>
                     <button class="cursor-pointer" id="remove-table-button">Remove</button>
                 </div>
             </div>
@@ -55,20 +57,23 @@
                 <button class="cursor-pointer close-form-model-button set-margin" id="close-form-model-button">Close</button>
             </div>
 
-            <table class="data-table" id="data-table">
-                <tr>
-                    <th>Model Number</th>
-                    <th>Name</th>
-                    <th>Accessories</th>
-                    <th>URL</th>
-                </tr>
-            </table>
+            <div class="data-table-container">
+                <table class="data-table" id="data-table">
+                    <tr>
+                        <th>Model Number</th>
+                        <th>Name</th>
+                        <th>Accessories</th>
+                        <th>URL</th>
+                    </tr>
+                </table>
+            </div>
         </section>
-
 
         </form>
     </body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="firebaseHandler.js"></script>
     <script src="manual-urls.js"></script>
     <script src="adminHandler.js"></script>
 </html>

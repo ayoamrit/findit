@@ -3,6 +3,17 @@ const addButton = document.getElementById("add-table-button");
 const removeButton = document.getElementById("remove-table-button");
 const findButton = document.getElementById("find-table-button");
 const resetButton = document.getElementById("reset-table-button");
+const exportCsvButton = document.getElementById("export-csv-button");
+const modifyButton = document.getElementById("modify-table-button");
+
+//Form Search Field
+const getUserInput = () =>{
+    return document.getElementById("find-element-input").value.trim();
+}
+const productNameField = document.getElementById("product-name");
+const productModelNumberField = document.getElementById("model-number");
+const productUrlField = document.getElementById("user-guide-url");
+const productAccessoriesField = document.getElementById("accessories-textarea");
 
 //Form model
 const formModel = document.getElementById("add-data-form-model");
@@ -47,7 +58,7 @@ populateTable();  //Run the function to populate the data-table
 
 //Find button functionality
 findButton.addEventListener('click', function (){
-    const userInput = document.getElementById("find-element-input").value.trim();
+    const userInput = getUserInput();
 
     //Find the searched item by the user in the database
     const searchedItem = modelManualUrls.find(item => item.modelNumber == userInput);
@@ -95,7 +106,46 @@ resetButton.addEventListener('click', function(){
 
 addButton.addEventListener('click', function(){
     formModel.style.display = "flex";
+    submit();
 });
 closeFormModel.addEventListener('click', function(){
+    productNameField.value = "";
+    productModelNumberField.value = "";
+    productUrlField.value = "";
+    productAccessoriesField.value = ""
     formModel.style.display = "none";
+});
+
+//Export stored data as an excel file when the export button is clicked
+exportCsvButton.addEventListener("click", function(){
+
+    const formattedData = modelManualUrls.map(item => ({
+        "Model Number": item.modelNumber,
+        "Model Name": item.modelName || "N/A",
+        "Accessories": item.accessories.join(", "),
+        "URL": {t: "s", v: "Link", l: {Target: item.url, Tooltip: "Click to open"}}
+    }));
+
+    const workSheet = XLSX.utils.json_to_sheet(formattedData);
+    const workBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workBook, workSheet, "Model Data");
+    XLSX.writeFile(workBook, "Model_Data.xlsx");
+    console.log("File has been created successfully");
+});
+
+modifyButton.addEventListener("click", function(){
+    const userInput = getUserInput();
+    //Check whether the searched item exist in the database or not
+    const searchedItem = modelManualUrls.find(item => item.modelNumber == userInput);
+
+    if(searchedItem){
+        productNameField.value = searchedItem.modelName || "N/A";
+        productModelNumberField.value = searchedItem.modelNumber;
+        productUrlField.value = searchedItem.url;
+        productAccessoriesField.value = searchedItem.accessories.join(", ");
+
+        formModel.style.display = "flex"; //Display the form
+    }else{
+        alert(`The value you are searching for does not exist in the database`);
+    }
 });
