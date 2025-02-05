@@ -106,7 +106,6 @@ resetButton.addEventListener('click', function(){
 
 addButton.addEventListener('click', function(){
     formModel.style.display = "flex";
-    submit();
 });
 closeFormModel.addEventListener('click', function(){
     productNameField.value = "";

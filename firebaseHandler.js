@@ -12,15 +12,3 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const contactFormDB = firebase.database().ref("ContactForm");
-
-const submit = () =>{
-    const name = "Amrit Dhaliwal"
-    const email = "Amrit@gmail.com";
-
-    var newContact = contactFormDB.push();
-    newContact.set({
-        "Name": name,
-        "Email": email
-    })
-}
