@@ -1,6 +1,6 @@
 // Web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyB0GsNr1Mhk-0yZ7zUl8xXi-kduLgu9ZwA",
+    apiKey: "",
     authDomain: "findit-database.firebaseapp.com",
     databaseURL: "https://findit-database-default-rtdb.firebaseio.com",
     projectId: "findit-database",
