@@ -1,66 +1,79 @@
 const modelManualUrls = [
   {
     modelNumber: "OLED48B4PUA",
+    modelName: "",
     accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "2 Stands", "x4 Screws [M4 L30]"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=0Kh9Z9iOJiZh4OcLi6gXlg"
   },
   {
     modelNumber: "OLED48B4PUA",
+    modelName: "",
     accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "2 Stands", "x4 Screws [M4 L30]"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=0Kh9Z9iOJiZh4OcLi6gXlg"
   },
   {
     modelNumber: "OLED55B4PUA",
+    modelName: "",
     accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "2 Stands", "x4 Screws [M4 L30]"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=0Kh9Z9iOJiZh4OcLi6gXlg"
   },
   {
     modelNumber: "OLED65B4PUA",
+    modelName: "",
     accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "2 Stands", "x4 Screws [M4 L30]"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=0Kh9Z9iOJiZh4OcLi6gXlg"
   },
   {
     modelNumber: "OLED77B4PUA",
+    modelName: "",
     accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "2 Stands", "x6 Screws [M4 L30]"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=0Kh9Z9iOJiZh4OcLi6gXlg"
   },
   {
     modelNumber: "OLED83B4PUA",
-    accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "Wires Cover" ,"Base Stand", "Neck Stand", "x7 Screws [M4 L20|"],
+    modelName: "",
+    accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "Wires Cover" ,"Base Stand", "Neck Stand", "x7 Screws [M4 L20]"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=9uanBoUjKbYhObQMUig"
   },
   {
     modelNumber: "OLED83C4PUA",
+    modelName: "",
     accessories: ["Power Cable [Attached]", "Magic Remote Control", "Batteries", "Quick User Guide", "Wires Cover" ,"Base Stand", "Neck Stand", "x7 Screws [M4 L20]"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=FDSj4i7jPe0fdfbqWQ0MxQ"
   },
   {
     modelNumber: "VY249HF",
+    modelName: "",
     accessories: ['LCD Monitor', 'Monitor Arm', 'Monitor Base', 'QSG', 'Warranty Card', 'Power Cable', 'HDMI Cable', 'L-Shaped Screwdriver', '4 Hinge Screws (M4 L10)', 'Base Screw (M6 L12)'],
     url: "https://dlcdnets.asus.com/pub/ASUS/LCD%20Monitors/VY249HF/ASUS_VY249HF_UM_English.pdf?model=VY249HF-R"
   },
   {
     modelNumber: "24MR400",
+    modelName: "",
     accessories: ['Base Stand', 'Stand Neck', 'HDMI Cable', 'Power Cable'],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=ufvu1YUdXoKF7UjHvw0Hg"
   },
   {
     modelNumber: "27MR400",
+    modelName: "",
     accessories: ["Base Stand", "Neck Stand", "HDMI Cable", "Power Cable"],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=ufvu1YUdXoKF7UjHvw0Hg"
   },
   {
     modelNumber: "AW2725DF",
+    modelName: "",
     accessories: ['Stand Riser', 'Stand Base', 'I/O Cover', 'Power Cable', 'DisplayPort Cable', 'USB-C to DP Cable', 'USB 3.2 Gen1 Upstream Cable', 'Microfiber Cloth', 'Alienware Sticker', 'Factory Cailbration Report', 'Safety, Environmental & Regulatory Information'],
     url: "https://dl.dell.com/content/manual84043186-alienware-aw2725df-monitor-user-s-guide.pdf?language=en-us"
   },
   {
     modelNumber: "OMEN 32Q",
+    modelName: "",
     accessories: ['Power Cord', 'Display Cable', 'Quick User Guide', 'Warranty'],
     url: "https://kaas.hpcloud.hp.com/pdf-public/pdf_7348193_en-US-1.pdf"
   },
   {
     modelNumber: "27GS50F-B",
+    modelName: "",
     accessories: ['HDMI Cable', 'x2 Screws [M4 L10]', 'Base Stand', 'Neck Stand', 'Power Cable'],
     url: "https://gscs-b2c.lge.com/downloadFile?fileId=TLLubWrFj16Rn1mAlUtndA"
   },

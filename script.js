@@ -85,7 +85,7 @@ function isEmpty(modelNumber) {
 
 //function to check whether the model number exist in the database or not
 function isItemExist(userInput, userInputType) {
-  return modelManualUrls.some((item) => item[userInputType] == userInput);
+  return modelManualUrls.find((item) => item[userInputType] == userInput);
 }
 
 //function to get details of the selected model number

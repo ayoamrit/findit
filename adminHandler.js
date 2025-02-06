@@ -18,6 +18,7 @@ const productAccessoriesField = document.getElementById("accessories-textarea");
 //Form model
 const formModel = document.getElementById("add-data-form-model");
 const closeFormModel = document.getElementById("close-form-model-button");
+const submitAdminForm = document.getElementById("submit-admin-form");
 
 //Data table variables & functions
 const table = document.getElementById("data-table");
@@ -146,5 +147,16 @@ modifyButton.addEventListener("click", function(){
         formModel.style.display = "flex"; //Display the form
     }else{
         alert(`The value you are searching for does not exist in the database`);
+    }
+});
+
+submitAdminForm.addEventListener("click", function(e){
+    e.preventDefault();  //Prevent default submission of the form
+    
+    if(productNameField.value !== "" && productModelNumberField.value !== "" && productUrlField.value !== "" && productAccessoriesField.value !== ""){
+        // UNDER CONSTRUCTION
+    }
+    else{
+        alert("All form values are required to submit the request");
     }
 });
