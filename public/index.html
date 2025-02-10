@@ -1,0 +1,68 @@
+<!DOCTYPE >
+<html lang="en">
+  <head>
+    <title>FindIt</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./resources/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+
+    <!--Navigation Bar-->
+    <nav>
+      <div class="nav-logo cursor-pointer">FindIt</div>
+      <div class="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="admin-page.html">Admin</a></li>
+          <li><a class="nav-links-github cusor-pointer" href="https://github.com/ayoamrit/findit" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!--Heading & Search Field-->
+    <main>
+      <div class="title">
+        <h1 id="title-heading"><span class="cursor-pointer">Complete</span> Your Product</h1>
+        <p class="title-sub-heading">Find all the accessories that come with your device in one simple search—fast, accurate, and hassle-free.</p>
+      </div>
+      <div class="search-bar">
+        <div class="search-bar-container">
+          <input id="search-bar-field" type="text" placeholder="Model Number"/>
+          <button class="button cursor-pointer" id="search-button">Search</button>
+        </div>
+        <div id="autocomplete-suggestions" class="autocomplete-suggestions"></div>
+      </div>
+
+      <!--Trending Search Container-->
+      <section class="trending-container">
+        <p>Trending Searches</p>
+        <span class="cursor-pointer trending-search-element">VY249HF</span>
+        <span class="cursor-pointer trending-search-element">24MR400</span>
+        <span class="cursor-pointer trending-search-element">AW2725DF</span>
+        <span class="cursor-pointer trending-search-element">27GS50F-B</span>
+        <span class="cursor-pointer trending-search-element">OLED83C4PUA</span>
+      </section>
+    </main>
+
+    <!--Accessories Section Model-->
+    <section class="accessories-section" id="accessories-section">
+      <div class="accessories-section-content" id="accessories-section-content">
+        <div class="accessories-section-heading">
+          <p id="accessories-heading"></p>
+          <span class="accessories-close-button cursor-pointer" id="accessories-close-button">Close</span>
+        </div>
+        <div class="accessories-section-bulletin">
+          <ul id="accessories-list">
+          </ul>
+        </div>
+        <div class="accessories-section-link cursor-pointer" id="accessories-section-link">Quick User Guide</div>
+      </div>
+    </section>
+
+  </body>
+
+  <script src="script.js"></script>
+  <script src="manual-urls.js"></script>
+</html>
