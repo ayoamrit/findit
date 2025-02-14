@@ -52,57 +52,42 @@ searchBarElem.addEventListener("input", () =>
   showSuggestions(searchBarElem.value)
 );
 
-searchButton.addEventListener("click", function () {
+
+searchButton.addEventListener("click", async () => {
   const getUserInput = document.getElementById("search-bar-field").value.trim();
 
-  if (isEmpty(getUserInput) == false) {
-    
-    const userInputType = "modelNumber";
+  if(isEmpty(getUserInput) == false){
+    try{
+      const response = await fetch(`/search?model=${getUserInput}`);
+      const data = await response.json();
 
-    //Check whether the item exist in the database
-    if (isItemExist(getUserInput, userInputType) == true) {
-      //Fetch details
-      const selectedModelDetails = getModelDetails(getUserInput, userInputType);
       updateAccessorySection(
-        getUserInput,
-        selectedModelDetails.accessories,
-        selectedModelDetails.url
+        data.modelName,
+        data.accessories,
+        data.url
       );
+
       accessorySection.style.display = "block";
-    } else {
-        alert(getUserInput +": The searched model number does not exist in the database. Please try again "+ 
-          "or request an update by contacting the team.");
+    }catch(error){
+      window.alert("Error fetching data: ", error);
     }
-  } else {
-    alert("The model number is required to search.");
   }
+  else{
+    window.alert("The model number is required to search");
+  }
+
 });
+
 
 //function to check whether the input field is empty or not
 function isEmpty(modelNumber) {
   return modelNumber === "";
 }
 
-//function to check whether the model number exist in the database or not
-function isItemExist(userInput, userInputType) {
-  return modelManualUrls.some((item) => item[userInputType] == userInput);
-}
 
-//function to get details of the selected model number
-function getModelDetails(userInput, userInputType) {
-  const model = modelManualUrls.find(
-    (item) => item[userInputType] == userInput
-  );
-
-  return {
-    accessories: model.accessories,
-    url: model.url,
-  };
-}
-
-function updateAccessorySection(userInput, accessories, manualUrl) {
+function updateAccessorySection(modelName, accessories, manualUrl) {
   //update the heading
-  accessoryHeading.textContent = userInput;
+  accessoryHeading.textContent = modelName;
 
   //Clear the list to avoid duplicates
   accessoryList.innerHTML = "";
@@ -115,6 +100,7 @@ function updateAccessorySection(userInput, accessories, manualUrl) {
   //Update the current manual url
   currentManualUrl = manualUrl;
 }
+
 
 //Open the link in the new window when "Quick User Guide" is clicked
 accessoryManualLink.addEventListener("click", function () {

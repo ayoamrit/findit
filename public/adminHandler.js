@@ -24,6 +24,50 @@ const submitAdminForm = document.getElementById("submit-admin-form");
 const table = document.getElementById("data-table");
 const tableBody = document.createElement("tbody");
 
+(async function fillDataTable() {
+    try{
+        const response = await fetch(`/search/all`);
+        const data = await response.json();
+
+        if(!response.ok){
+            throw new Error(data.message || "Failed to fetch data");
+        }
+
+        Object.keys(data).forEach(modelNumber => {
+            const item = data[modelNumber];
+            const row = document.createElement("tr");
+
+            const modelNumberCell = document.createElement("td");
+            modelNumberCell.textContent = modelNumber;
+            row.appendChild(modelNumberCell);
+
+            const modelNameCell = document.createElement("td");
+            modelNameCell.textContent = item.modelName;
+            row.appendChild(modelNameCell);
+
+            const modelAccessories = document.createElement("td");
+            modelAccessories.textContent = item.accessories;
+            row.appendChild(modelAccessories);
+
+            const modelUrl = document.createElement("td");
+            const link = document.createElement("a");
+            link.href = item.url;
+            link.textContent = "Manual";
+            link.target = "_blank";
+            modelUrl.appendChild(link);
+            row.appendChild(modelUrl);
+
+            tableBody.appendChild(row);
+        });
+
+        table.appendChild(tableBody);
+
+    }catch(error){
+        window.alert("Error loading data: ", error);
+    }
+})();
+
+/*
 function populateTable(){
     modelManualUrls.forEach(item => {
         const row = document.createElement("tr");
@@ -55,7 +99,7 @@ function populateTable(){
 }
 
 populateTable();  //Run the function to populate the data-table
-
+*/
 
 //Find button functionality
 findButton.addEventListener('click', function (){
