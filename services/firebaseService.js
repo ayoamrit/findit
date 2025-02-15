@@ -30,4 +30,22 @@ const getAllModels = () => {
     return localDatabase;
 }
 
-module.exports = {loadDatabase, getModel, getAllModels};
+const addModel = async (modelNumber, modelName, sku, accessories, url) => {
+
+    try{
+        const ref = firebaseDatabase.ref("/"+modelNumber);
+        const newData = {modelName, sku, accessories, url}
+
+        //Push data to the firebase database
+        await ref.set(newData);
+        localDatabase[modelNumber] = newData;  //Update the local cache
+
+        return { success: true, data: newData};
+
+    }catch(error){
+        console.error("Error adding model: ", error);
+        return { success: false, error: "Failed to add model"};
+    }
+}
+
+module.exports = {loadDatabase, getModel, getAllModels, addModel};

@@ -4,6 +4,9 @@ const {loadDatabase} = require("./services/firebaseService");
 const searchRoutes = require("./routes/searchRoutes");
 
 const app = express();
+
+//Middleware to parse incoming JSON requests
+app.use(express.json());
 // Static files (CSS, JS, Images) will be accessed from public/ folder
 app.use(express.static(__dirname + '/public'));
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const {getModel, getAllModels} = require('../services/firebaseService');
+const {getModel, getAllModels, addModel} = require('../services/firebaseService');
 
 const router = express.Router();
 
@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
     if(searchedData){
         res.json({
             accessories: searchedData.accessories.split(", ").map(item => item.trim()),
+            sku: searchedData.sku,
             modelName: searchedData.modelName,
             url: searchedData.url
         });
@@ -24,7 +25,6 @@ router.get("/", (req, res) => {
         res.status(404).json({ error: "Model number is not available"});
     }
 });
-
 
 //Router to fetch all models
 router.get("/all", (req, res) => {
@@ -35,6 +35,19 @@ router.get("/all", (req, res) => {
     }
 
     res.json(database);
+});
+
+//Router to add data to the firebase database
+router.post("/add", async (req, res) => {
+    const {modelNumber, modelName, sku, accessories, url} = req.body;
+
+    const result = await addModel(modelNumber, modelName, sku, accessories, url);
+
+    if(result.success){
+        res.status(201).json({message: "Model added successfully", data: result.data});
+    }else{
+        res.status(500).json({error: result.error});
+    }
 });
 
 module.exports = router;

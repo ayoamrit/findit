@@ -63,6 +63,7 @@ searchButton.addEventListener("click", async () => {
 
       updateAccessorySection(
         data.modelName,
+        data.sku,
         data.accessories,
         data.url
       );
@@ -85,9 +86,9 @@ function isEmpty(modelNumber) {
 }
 
 
-function updateAccessorySection(modelName, accessories, manualUrl) {
+function updateAccessorySection(modelName, modelSku, accessories, manualUrl) {
   //update the heading
-  accessoryHeading.textContent = modelName;
+  accessoryHeading.textContent = `${modelName} | BestBuy SKU: ${modelSku}`;
 
   //Clear the list to avoid duplicates
   accessoryList.innerHTML = "";
