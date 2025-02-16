@@ -21,8 +21,9 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(5500, () => {
-    console.log("Server is running");
+const port = process.env.port || 5500;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
 
 

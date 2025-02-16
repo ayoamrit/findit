@@ -61,6 +61,11 @@ searchButton.addEventListener("click", async () => {
       const response = await fetch(`/search?model=${getUserInput}`);
       const data = await response.json();
 
+      //Check whether the response is valid or not
+      if(!response.ok){
+        throw new Error(data.error || "Unknown error occurred");
+      }
+
       updateAccessorySection(
         data.modelName,
         data.sku,
@@ -70,7 +75,7 @@ searchButton.addEventListener("click", async () => {
 
       accessorySection.style.display = "block";
     }catch(error){
-      window.alert("Error fetching data: ", error);
+      window.alert("Error fetching data: "+ error.message);
     }
   }
   else{

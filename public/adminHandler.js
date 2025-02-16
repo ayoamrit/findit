@@ -21,6 +21,9 @@ const formModel = document.getElementById("add-data-form-model");
 const closeFormModel = document.getElementById("close-form-model-button");
 const submitAdminForm = document.getElementById("submit-admin-form");
 
+//This variable will be used when the user try to add or modify data to the database
+let formSubmissionType = "";
+
 //Data table variables & functions
 const table = document.getElementById("data-table");
 const tableBody = document.createElement("tbody");
@@ -88,7 +91,9 @@ fillDataTable();
 findButton.addEventListener('click', async function (){
 
     const userInput = getUserInput();
-    if(userInput === '') return window.alert("The model number is required to search inside the database");
+    if(userInput === ''){
+        return window.alert("The model number is required to search inside the database");
+    } 
 
     try{
         const response = await fetch(`/search?model=${getUserInput()}`);
@@ -136,10 +141,29 @@ resetButton.addEventListener('click', function(){
 
     //Reset the input field value
     document.getElementById("find-element-input").value = "";
+    closeFormModel.dispatchEvent(new Event("click"));
 });
 
 addButton.addEventListener('click', function(){
-    formModel.style.display = "flex";
+
+    const formModelDisplay = formModel.style.display;
+
+    //If the formModel is already visible on the screen
+    if(formModelDisplay === "flex"){
+
+        //Close & remove values from text fields
+        closeFormModel.dispatchEvent(new Event("click"));
+
+        //Open it again without values
+        addButton.dispatchEvent(new Event("click"));
+    }
+    else{
+        formModel.style.display = "flex";
+    }
+
+    //Set the form submission type to add for backend data services
+    formSubmissionType = "add";
+    console.log(formSubmissionType);
 });
 
 closeFormModel.addEventListener('click', function(){
@@ -148,6 +172,7 @@ closeFormModel.addEventListener('click', function(){
     productSkuField.value = "";
     productUrlField.value = "";
     productAccessoriesField.value = ""
+    formSubmissionType = "";  //Set the form submission type to default
     formModel.style.display = "none";
 });
 
@@ -188,6 +213,8 @@ exportCsvButton.addEventListener("click", async function(){
     console.log("File has been created successfully");
 });
 
+
+//Modify Database Functionality
 modifyButton.addEventListener("click", async function(){
     const userInput = getUserInput();
     
@@ -204,22 +231,14 @@ modifyButton.addEventListener("click", async function(){
         productSkuField.value = data.sku;
 
         formModel.style.display = "flex";
+        formSubmissionType = "modify";
     }catch(error){
-        window.alert("An error occurred during the process: ", error.message);
-    }
-
-    if(searchedItem){
-        productNameField.value = searchedItem.modelName || "N/A";
-        productModelNumberField.value = searchedItem.modelNumber;
-        productUrlField.value = searchedItem.url;
-        productAccessoriesField.value = searchedItem.accessories.join(", ");
-
-        formModel.style.display = "flex"; //Display the form
-    }else{
-        alert(`The value you are searching for does not exist in the database`);
+        window.alert("An error occurred during the process");
     }
 });
 
+
+//Submit Admin Form Functionality
 submitAdminForm.addEventListener("click", async function(e){
     e.preventDefault();  //Prevent default submission of the form
 
@@ -242,13 +261,15 @@ submitAdminForm.addEventListener("click", async function(e){
                     modelName: productName,
                     sku: productSku,
                     accessories: productAccessories,
-                    url: productUrl
+                    url: productUrl,
+                    type: formSubmissionType  //Add or modify
                 })
             });
     
             const data = await response.json();
     
             if(response.ok){
+                resetButton.dispatchEvent(new Event("click"));
                 window.alert("Model added successfully to the database");
             }else{
                 window.alert("Error: " + data.error);
@@ -256,11 +277,33 @@ submitAdminForm.addEventListener("click", async function(e){
 
         }catch(error){
             console.error("Error sending request: ", error);
-            window.alert("An unexpected error occurred");
+            window.alert("An unexpected error occurred: "+erorr);
         }
 
     }
     else{
         alert("All form values are required to submit the request");
+    }
+});
+
+
+//Remove Button Functionality
+removeButton.addEventListener("click", async () => {
+    const userInput = getUserInput();
+    
+    if(userInput === ``) return window.alert("The model number is required to remove data from the database");
+
+    try{
+        const response = await fetch(`/search/remove?model=${userInput}`);
+        const data = await response.json();
+
+        if(response.ok){
+            window.alert(data.message);
+        }else{
+            window.alert("Error: "+data.error);
+        }
+    }catch(error){
+        console.log(error.message);
+        window.alert("An error occurred during the process: "+error.message);
     }
 });

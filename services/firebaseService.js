@@ -30,9 +30,20 @@ const getAllModels = () => {
     return localDatabase;
 }
 
-const addModel = async (modelNumber, modelName, sku, accessories, url) => {
+//Function to add data to the database
+const addModel = async (modelNumber, modelName, sku, accessories, url, type) => {
 
     try{
+
+        //Check whether modelNumber already exist in the database or not
+        if(type === "add" && localDatabase[modelNumber]){
+            return { success: false, error: "Model already exist in the database"};
+        }
+
+        if(type === "modify" && !localDatabase[modelNumber]){
+            return {success: false, error: "Model number does not exist in the database"};
+        }
+
         const ref = firebaseDatabase.ref("/"+modelNumber);
         const newData = {modelName, sku, accessories, url}
 
@@ -48,4 +59,26 @@ const addModel = async (modelNumber, modelName, sku, accessories, url) => {
     }
 }
 
-module.exports = {loadDatabase, getModel, getAllModels, addModel};
+
+//Function to remove data from the database
+const removeModel = async (modelNumber) => {
+
+    try{
+        if(!localDatabase[modelNumber]) return {success: false, error: "Model number does not exist in the database"};
+        const ref = firebaseDatabase.ref("/"+modelNumber);
+        
+        //Remove data from Firebase
+        await ref.remove();
+
+        //Remove the local cache
+        delete localDatabase[modelNumber];
+
+        return {success: true, message: "Model number has been removed successfully"};
+    }catch(error){
+        console.error("Error deleting model: ", error);
+        return {success: false, error: "Failed to delete model"};
+    }
+    
+}
+
+module.exports = {loadDatabase, getModel, getAllModels, addModel, removeModel};
