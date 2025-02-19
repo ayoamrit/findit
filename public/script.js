@@ -14,18 +14,33 @@ let searchBarElem = document.getElementById("search-bar-field");
 //Trending Element
 const trendingSearchElement = document.querySelectorAll(".trending-search-element");
 
-//Scrolling Animation Section
-const scrollers = document.querySelectorAll(".scroller");
 
+let suggestionModelNumbers = [];
+async function fetchModelNumbers() {
+  try{
+    const response = await fetch("/search/all");
+
+    if(!response.ok) throw new Error("Failed to fetch data");
+    const data = await response.json()
+
+    if(data && typeof data === "object"){
+      suggestionModelNumbers = Object.keys(data);
+    }
+    else{
+      throw new Error("Invalid data format received");
+    }
+  }catch(error){
+    window.alert("Error loading model numbers for the search bar"+error);
+  }
+}
+fetchModelNumbers();
 
 // Function to filter suggestions and display them
 function showSuggestions(value) {
-  const suggestions = modelManualUrls.map((modelObj) => modelObj.modelNumber);
-  console.log("suggestions>>>", suggestions);
   suggestionsBox.innerHTML = ""; // Clear previous suggestions
   if (value.trim() === "") return; // Exit if input is empty
 
-  const filteredSuggestions = suggestions.filter((item) =>
+  const filteredSuggestions = suggestionModelNumbers.filter((item) =>
     item.toLowerCase().includes(value.toLowerCase())
   );
 

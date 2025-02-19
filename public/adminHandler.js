@@ -97,6 +97,8 @@ findButton.addEventListener('click', async function (){
 
     try{
         const response = await fetch(`/search?model=${getUserInput()}`);
+
+        if(!response.ok) throw new Error("The model number may not be available in the database");
         const data = await response.json();
 
         tableBody.innerHTML = "";
@@ -130,7 +132,7 @@ findButton.addEventListener('click', async function (){
         table.appendChild(tableBody);
 
     }catch(error){
-        window.alert("An error has occurred during the process", error);
+        window.alert("An error has occurred during the process"+ error);
     }
 });
 
@@ -222,6 +224,7 @@ modifyButton.addEventListener("click", async function(){
     
     try{
         const response = await fetch(`/search?model=${userInput}`);
+        //if(!response.ok) throw new Error("The model number may not be available in the database");
         const data = await response.json();
 
         productNameField.value = data.modelName;
@@ -233,7 +236,7 @@ modifyButton.addEventListener("click", async function(){
         formModel.style.display = "flex";
         formSubmissionType = "modify";
     }catch(error){
-        window.alert("An error occurred during the process");
+        window.alert("An error occurred during the process: "+error);
     }
 });
 
