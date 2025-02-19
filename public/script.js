@@ -34,7 +34,6 @@ async function fetchModelNumbers() {
   }
 }
 fetchModelNumbers();
-console.log(suggestionModelNumbers);
 
 // Function to filter suggestions and display them
 function showSuggestions(value) {
