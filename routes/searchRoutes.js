@@ -3,7 +3,6 @@ const {getModel, getAllModels, addModel, removeModel} = require('../services/fir
 
 const router = express.Router();
 
-
 //Route to search a specific model
 router.get("/", (req, res) => {
     const modelNumber = req.query.model;
