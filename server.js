@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const {loadDatabase} = require("./services/firebaseService");
-const searchRoutes = require("./routes/searchRoutes");
+//const searchRoutes = require("./routes/searchRoutes");
+const searchRoutes = require('./api/search');
 
 const app = express();
 
