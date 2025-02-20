@@ -36,10 +36,11 @@ const loadDatabase = async () => {
     }
 }
 
-const getModel = (modelNumber) => {
+const getModel = async (modelNumber) => {
+    await loadDatabase();
     if(!localDatabase || typeof localDatabase !== "object") return null;
     return localDatabase[modelNumber];
-}
+};
 
 const getAllModels = () => {
     return localDatabase;
