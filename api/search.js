@@ -1,7 +1,11 @@
 const { getModel, getAllModels, addModel, removeModel } = require('../services/firebaseService');
 
-export default function handler(req, res) {
+module.exports = async (req, res) => {
     if (req.method === 'GET') {
-        return res.json({"Name": "Amrit Dhaliwal"});
+        // Example response
+        return res.json({ "Name": "Amrit Dhaliwal" });
+    } else {
+        res.setHeader('Allow', ['GET']);
+        return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-}
+};
