@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 loadDatabase();
 
 //Use the search routes
-app.use("/search", searchRoutes);
+app.use("/api/search", searchRoutes);
 
 //HTTP GET request for the root URL
 app.get('/', (req, res) => {
