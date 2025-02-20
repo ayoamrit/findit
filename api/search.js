@@ -10,8 +10,10 @@ export default function handler(req, res) {
 
         const searchedData = getModel(modelNumber);
         if (searchedData) {
+
+            const accessories = searchedData.accessories?searchedData.accessories.split(", ").map(item => item.trim()) : [];
             res.json({
-                accessories: searchedData.accessories.split(", ").map(item => item.trim()),
+                accessories,
                 sku: searchedData.sku,
                 modelName: searchedData.modelName,
                 url: searchedData.url
