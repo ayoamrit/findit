@@ -16,7 +16,7 @@ const trendingSearchElement = document.querySelectorAll(".trending-search-elemen
 
 const startFunction = async () => {
   try{
-    const reponse = await fetch("/api/test");
+    const response = await fetch("/api/test");
     const data = await response.json();
 
     console.log(data.message);
