@@ -16,6 +16,8 @@ const trendingSearchElement = document.querySelectorAll(".trending-search-elemen
 
 
 let suggestionModelNumbers = [];
+
+//Function to fetch all models from the firebase realtime database and use them for the suggestion box
 async function fetchModelNumbers() {
   try{
     const response = await fetch("/api/allModels");
@@ -83,6 +85,7 @@ searchButton.addEventListener("click", async () => {
 
       console.log(data);
 
+      //Call the function to show data in the model
       updateAccessorySection(
         data.modelName,
         data.sku,

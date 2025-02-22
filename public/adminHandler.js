@@ -32,7 +32,7 @@ async function fillDataTable() {
     try{
 
         //Fetch data from the database
-        const response = await fetch(`/search/all`);
+        const response = await fetch(`/api/allModels`);
         const data = await response.json();
 
         if(!response.ok){
@@ -96,7 +96,7 @@ findButton.addEventListener('click', async function (){
     } 
 
     try{
-        const response = await fetch(`/search?model=${getUserInput()}`);
+        const response = await fetch(`/api/searchModel?modelNumber=${userInput}`);
 
         if(!response.ok) throw new Error("The model number may not be available in the database");
         const data = await response.json();
@@ -117,7 +117,7 @@ findButton.addEventListener('click', async function (){
         row.appendChild(modelNameCell);
 
         const modelAccessories = document.createElement("td");
-        modelAccessories.textContent = data.accessories.join(", ");
+        modelAccessories.textContent = data.accessories;
         row.appendChild(modelAccessories);
 
         const modelUrl = document.createElement("td");
@@ -183,7 +183,7 @@ exportCsvButton.addEventListener("click", async function(){
     let formattedData = [];
 
     try{
-        const response = await fetch(`/search/all`);
+        const response = await fetch(`/api/allModels`);
         const data = await response.json();
 
         if(!response.ok){
@@ -223,14 +223,14 @@ modifyButton.addEventListener("click", async function(){
     if(userInput === '') return window.alert("The model is required to modify the database");
     
     try{
-        const response = await fetch(`/search?model=${userInput}`);
+        const response = await fetch(`/api/search?modelNumber=${userInput}`);
         //if(!response.ok) throw new Error("The model number may not be available in the database");
         const data = await response.json();
 
         productNameField.value = data.modelName;
         productModelNumberField.value = userInput;
         productUrlField.value = data.url;
-        productAccessoriesField.value = data.accessories.join(", ");
+        productAccessoriesField.value = data.accessories;
         productSkuField.value = data.sku;
 
         formModel.style.display = "flex";

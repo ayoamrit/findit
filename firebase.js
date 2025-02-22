@@ -23,24 +23,27 @@ if(!admin.apps.length){
 
 const firebaseDatabase = admin.database();
 
+//Function to get all models from the firebase realtime database
 async function getAllModels(){
     try{
-        const ref = firebaseDatabase.ref("/");
+        const ref = firebaseDatabase.ref("/");  //Reference to the entire database
         const snapshot = await ref.once("value");
         const data = snapshot.val();
 
+        //Throw an error if no data is found in the database
         if(!data){
             throw new Error("No data found in the database");
         } 
 
         console.log("Database has been loaded successfully");
-        return data;
+        return data;  //Return data
     }catch(error){
         console.error("Error occurred while loading the database: ", error);
         return {error: error.message};
     }
 }
 
+//Function to get a specific model from the firebase realtime database
 async function getModel(modelNumber){
     try{
         const ref = firebaseDatabase.ref("/"+modelNumber);  //Reference to the speicific model number
