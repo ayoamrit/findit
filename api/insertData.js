@@ -19,6 +19,6 @@ export default async function handler(req, res){
         return res.status(200).json({message: `Model ${type}ed successfully`});
     }catch(error){
         console.error(`Error ${type}ing data in Firebase`, error);
-        return res.status(500).json({error: `Failed to ${type} data in the database`});
+        return res.status(500).json({error: `Failed to ${type} data in the database: ${error.messsage}`});
     }
 }

@@ -301,6 +301,7 @@ removeButton.addEventListener("click", async () => {
         const data = await response.json();
 
         if(response.ok){
+            resetButton.dispatchEvent(new Event("click"));
             window.alert(data.message);
         }else{
             window.alert("Error: "+data.error);
