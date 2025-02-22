@@ -32,7 +32,7 @@ async function getAllModels(){
         if(!data){
             throw new Error("No data found in the database");
         } 
-        
+
         console.log("Database has been loaded successfully");
         return data;
     }catch(error){
@@ -41,4 +41,23 @@ async function getAllModels(){
     }
 }
 
-export {getAllModels};
+async function getModel(modelNumber){
+    try{
+        const ref = firebaseDatabase.ref("/"+modelNumber);  //Reference to the speicific model number
+        const snapshot = await ref.once("value");   //Retrieve the data
+        const data = snapshot.val();
+
+        if(!data){
+            //Throw an error if the model number does not exist in the database
+            throw new Error("Model not found in the database");
+        }
+
+        console.log("Model has been loaded successfully");
+        return data;  //Return the model data if it exists
+    } catch(error){
+        console.error("Error occurred while loading the model: ",error);
+        return {error: error.message};
+    }
+}
+
+export {getAllModels, getModel};

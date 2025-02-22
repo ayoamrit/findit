@@ -73,7 +73,7 @@ searchButton.addEventListener("click", async () => {
 
   if(isEmpty(getUserInput) == false){
     try{
-      const response = await fetch(`/search?model=${getUserInput}`);
+      const response = await fetch(`/api/searchModel?modelNumber=${getUserInput}`);
       const data = await response.json();
 
       //Check whether the response is valid or not
@@ -81,6 +81,8 @@ searchButton.addEventListener("click", async () => {
         throw new Error(data.error || "Unknown error occurred");
       }
 
+      console.log(data);
+      
       updateAccessorySection(
         data.modelName,
         data.sku,

@@ -5,6 +5,7 @@
     ],
     "routes": [
       { "src": "/api/allModels", "dest": "api/allModels.js"},
+      { "src": "/api/searchModel", "dest": "api/searchModel.js"},
       { "src": "/(admin-page\\.html|script\\.js|style\\.css|manual-urls\\.js|adminHandler\\.js)", "dest": "/public/$1" },
       { "src": "/(.*)", "dest": "public/index.html" }
     ]
