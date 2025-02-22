@@ -14,22 +14,11 @@ let searchBarElem = document.getElementById("search-bar-field");
 //Trending Element
 const trendingSearchElement = document.querySelectorAll(".trending-search-element");
 
-const startFunction = async () => {
-  try{
-    const response = await fetch("/api/test");
-    const data = await response.json();
-
-    console.log(data);
-  }catch(error){
-    console.log(error);
-  }
-}
-console.log(startFunction());
 
 let suggestionModelNumbers = [];
 async function fetchModelNumbers() {
   try{
-    const response = await fetch("/search/all");
+    const response = await fetch("/api/allModels");
 
     if(!response.ok) throw new Error("Failed to fetch data");
     const data = await response.json()
