@@ -1,16 +1,16 @@
-import {firebaseDatabase} from "../firebase.js"
+import {getAllModels} from "../firebase.js"
 
 export default async function handler (req, res){
     try{
-        const ref = firebaseDatabase.ref("/");
-        const snapshot = await ref.once("value");
-        const data = snapshot.val();
-        res.status(200).json({
-            message: "Database has been loaded successfully",
-            data: data || "No data found at the specified path.",
-        });
+        const result = await getAllModels();
+
+        if(result.error){
+            return res.status(500).json({error: result.error});
+        }
+
+        return res.status(200).json(result);
     }catch(error){
-        console.error("Database connection error: ", error);
-        res.status(500).json({message: "Failed to connect to the database", error: error.message});
+        console.error("Error in handler: ", error);
+        return res.status(500).json({error: "An unexpected error occurred."});
     }
 }

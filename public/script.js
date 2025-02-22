@@ -19,8 +19,7 @@ const startFunction = async () => {
     const response = await fetch("/api/test");
     const data = await response.json();
 
-    console.log(data.message);
-    console.log(data.data);
+    console.log(data);
   }catch(error){
     console.log(error);
   }

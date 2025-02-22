@@ -23,4 +23,22 @@ if(!admin.apps.length){
 
 const firebaseDatabase = admin.database();
 
-export {firebaseDatabase};
+async function getAllModels(){
+    try{
+        const ref = firebaseDatabase.ref("/");
+        const snapshot = await ref.once("value");
+        const data = snapshot.val();
+
+        if(!data){
+            throw new Error("No data found in the database");
+        } 
+        
+        console.log("Database has been loaded successfully");
+        return data;
+    }catch(error){
+        console.error("Error occurred while loading the database: ", error);
+        return {error: error.message};
+    }
+}
+
+export {getAllModels};
