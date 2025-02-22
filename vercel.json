@@ -1,5 +1,11 @@
 {
-    "version": 2,
-    "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-    "routes": [{ "src": "/(.*)", "dest": "server.js" }]
+    "builds": [
+      { "src": "api/*.js", "use": "@vercel/node" },
+      { "src": "public/*", "use": "@vercel/static" }
+    ],
+    "routes": [
+      { "src": "/api/test", "dest": "api/test.js"},
+      { "src": "/(admin-page\\.html|script\\.js|style\\.css|manual-urls\\.js|adminHandler\\.js)", "dest": "/public/$1" },
+      { "src": "/(.*)", "dest": "public/index.html" }
+    ]
 }

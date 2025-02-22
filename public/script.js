@@ -14,6 +14,18 @@ let searchBarElem = document.getElementById("search-bar-field");
 //Trending Element
 const trendingSearchElement = document.querySelectorAll(".trending-search-element");
 
+const startFunction = async () => {
+  try{
+    const reponse = await fetch("/api/test");
+    const data = await response.json();
+
+    console.log(data.message);
+    console.log(data.data);
+  }catch(error){
+    console.log(error);
+  }
+}
+console.log(startFunction());
 
 let suggestionModelNumbers = [];
 async function fetchModelNumbers() {
