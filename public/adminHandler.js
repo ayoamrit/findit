@@ -297,7 +297,7 @@ removeButton.addEventListener("click", async () => {
     if(userInput === ``) return window.alert("The model number is required to remove data from the database");
 
     try{
-        const response = await fetch(`/search/remove?model=${userInput}`);
+        const response = await fetch(`/api/removeModel?modelNumber=${userInput}`);
         const data = await response.json();
 
         if(response.ok){

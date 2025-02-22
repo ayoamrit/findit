@@ -74,7 +74,7 @@ async function addDataToDatabase(modelNumber, modelName, sku, accessories, url){
         }
 
         const newData = {modelName, sku, accessories, url};
-        await modelRef.set(newData);
+        await modelRef.set(newData);  //Add new data to the Firebase database
 
     }catch(error){
         console.error("Error adding data to Firebase: ", erorr);
@@ -83,11 +83,11 @@ async function addDataToDatabase(modelNumber, modelName, sku, accessories, url){
 }
 
 //Function to modify data in the firebase realtime database
-async function modifyDataInDatabase(modelNumber, modeName, sku, accessories, url){
+async function modifyDataInDatabase(modelNumber, modelName, sku, accessories, url){
     try{
         const modelRef = firebaseDatabase.ref("/"+modelNumber);
         const newData = {modelName, sku, accessories, url};
-        await modelRef.update(newData);
+        await modelRef.update(newData);  //Update existing data in the Firebase Database
 
         console.log("Data modified successfully");
     }catch(error){
@@ -96,4 +96,22 @@ async function modifyDataInDatabase(modelNumber, modeName, sku, accessories, url
     }
 }
 
-export {getAllModels, getModel, addDataToDatabase, modifyDataInDatabase};
+//Function to delete model from the firebase realtime database
+async function deleteModelFromDatabase(modelNumber){
+    try{
+        const ref = firebaseDatabase.ref("/"+modelNumber);
+        const snapshot = await ref.once("value");
+
+        if(!snapshot.exists()){
+            throw new Error("Model does not exist in the database");
+        }
+
+        await ref.remove();
+        console.log("Model removed from the database successfully");
+    }catch(error){
+        console.error("Error occurred while removing model from the Firebase database: ", error);
+        throw error;
+    }
+}
+
+export {getAllModels, getModel, addDataToDatabase, modifyDataInDatabase, deleteModelFromDatabase};
