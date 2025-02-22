@@ -63,4 +63,37 @@ async function getModel(modelNumber){
     }
 }
 
-export {getAllModels, getModel};
+//Function to add data to the firebase realtime database
+async function addDataToDatabase(modelNumber, modelName, sku, accessories, url){
+    try{
+        const modelRef = firebaseDatabase.ref("/"+modelNumber);
+        const snapshot = await modelRef.once("value");
+
+        if(snapshot.exists()){
+            throw new Error("Model number already exist in the database.");
+        }
+
+        const newData = {modelName, sku, accessories, url};
+        await modelRef.set(newData);
+
+    }catch(error){
+        console.error("Error adding data to Firebase: ", erorr);
+        throw error;
+    }
+}
+
+//Function to modify data in the firebase realtime database
+async function modifyDataInDatabase(modelNumber, modeName, sku, accessories, url){
+    try{
+        const modelRef = firebaseDatabase.ref("/"+modelNumber);
+        const newData = {modelName, sku, accessories, url};
+        await modelRef.update(newData);
+
+        console.log("Data modified successfully");
+    }catch(error){
+        console.error("Error modifying data in Firebase: ", error);
+        throw error;
+    }
+}
+
+export {getAllModels, getModel, addDataToDatabase, modifyDataInDatabase};

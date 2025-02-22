@@ -223,7 +223,7 @@ modifyButton.addEventListener("click", async function(){
     if(userInput === '') return window.alert("The model is required to modify the database");
     
     try{
-        const response = await fetch(`/api/search?modelNumber=${userInput}`);
+        const response = await fetch(`/api/searchModel?modelNumber=${userInput}`);
         //if(!response.ok) throw new Error("The model number may not be available in the database");
         const data = await response.json();
 
@@ -254,7 +254,7 @@ submitAdminForm.addEventListener("click", async function(e){
     if(productName && productSku && productModelNumber && productAccessories && productUrl){
 
         try{
-            const response = await fetch("/search/add", {
+            const response = await fetch("/api/insertData", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -273,7 +273,7 @@ submitAdminForm.addEventListener("click", async function(e){
     
             if(response.ok){
                 resetButton.dispatchEvent(new Event("click"));
-                window.alert("Model added successfully to the database");
+                window.alert(data.message);
             }else{
                 window.alert("Error: " + data.error);
             }
