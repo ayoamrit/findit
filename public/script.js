@@ -82,11 +82,11 @@ searchButton.addEventListener("click", async () => {
       }
 
       console.log(data);
-      
+
       updateAccessorySection(
         data.modelName,
         data.sku,
-        data.accessories,
+        data.accessories.split(",").map(accessory => accessory.trim()),
         data.url
       );
 
